@@ -18,13 +18,13 @@ Sys.setenv("DISPLAY" = ":0") # to make View works on vscode
 # theme_set(theme_minimal())   # Establish the theme set for the plots
 
 
-work_dir_gen <- "/Users/andres/Google Drive/0.Script_Code/rProjects/calculationsR"
+work_dir_gen <- "/Users/andres/Google Drive/0.Script_Code/rProjects/R-graphing-oscilloscope"
 pattern <- "T0001.CSV" # First test
 vars  <- c("CH1", "CH2", "CH3", "CH4")
 colors <- c("#0022bb", "#E7B800", "#00e713", "#e7003a")
 
-dir_data <- paste(work_dir_gen, "data/Sonda_1_en_frecuencia", sep = "/")
-dir_results <- paste(work_dir_gen, "results/Sonda_1_en_frecuencia", sep = "/")
+dir_data <- paste(work_dir_gen, "data/Sonda_1_en_frecuencia_Rumba", sep = "/")
+dir_results <- paste(work_dir_gen, "results/Sonda_1_en_frecuencia_Rumba", sep = "/")
 
 archivos  <- dir(dir_data)
 
@@ -38,10 +38,20 @@ summary(data_raw)
 
 ################################################
 # 1. Transform the data into long format. We only represent CH1 - CH4
+
+nrow(data_raw) # [1] 125000
+n_i <- 1
+n_f <- 3000
+
 df <- data_raw %>%
+  slice(., n_i : n_f) %>% 
   select(TIME, CH1, CH2, CH3, CH4) %>%
   gather(key = "variable", value = "value", -TIME)
 # head(df, 3)
+
+df <- df %>% filter(variable == c("CH1", "CH2"))
+
+
 
 # Multiple line plot in the same plot with all the data
 g1 <- ggplot(df, aes(x = TIME, y = value)) +
@@ -50,7 +60,7 @@ g1 <- ggplot(df, aes(x = TIME, y = value)) +
   theme_minimal()
 
 ggsave(g1, device = "png",
-        filename = paste0(dir_results,"/", pattern, "_plot.png"),
+        filename = paste0(dir_results, "/", pattern, "_plot.png"),
         height = 15, width = 120, units = "cm")
 
 

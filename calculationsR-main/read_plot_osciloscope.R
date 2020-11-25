@@ -18,13 +18,16 @@ Sys.setenv("DISPLAY" = ":0") # to make View works on vscode
 # theme_set(theme_minimal())   # Establish the theme set for the plots
 
 
-work_dir_gen <- "/Users/andres/Google Drive/0.Script_Code/rProjects/R-graphing-oscilloscope"
+# work_dir_gen <- "/Users/andres/Google Drive/0.Script_Code/rProjects/R-graphing-oscilloscope"
+work_dir_gen <- "C:/Users/mifer/Desktop/ExperimentosPFG/Cuarto_experimento/1datSonda1frecuencia_Rumba"
 pattern <- "T0001.CSV" # First test
 vars  <- c("CH1", "CH2", "CH3", "CH4")
 colors <- c("#0022bb", "#E7B800", "#00e713", "#e7003a")
 
-dir_data <- paste(work_dir_gen, "data/Sonda_1_en_frecuencia_Rumba", sep = "/")
-dir_results <- paste(work_dir_gen, "results/Sonda_1_en_frecuencia_Rumba", sep = "/")
+# dir_data <- paste(work_dir_gen, "data/Sonda_1_en_frecuencia_Rumba", sep = "/")
+# dir_results <- paste(work_dir_gen, "results/Sonda_1_en_frecuencia_Rumba", sep = "/")
+dir_data <- paste(work_dir_gen, "data/1datSonda1frecuencia_Rumba", sep = "/")
+dir_results <- paste(work_dir_gen, "results/1datSonda1frecuencia_Rumba", sep = "/")
 
 archivos  <- dir(dir_data)
 
